@@ -1,0 +1,4 @@
+PyQt5>=5.15.0
+openai>=1.0.0  # Using the new OpenAI API interface
+keyring>=23.0.0
+pathlib>=1.0.1
