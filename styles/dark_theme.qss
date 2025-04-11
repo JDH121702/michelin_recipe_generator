@@ -1,0 +1,298 @@
+/* Main application window */
+QMainWindow {
+    background-color: #1A1A1A;
+    color: #F0F0F0;
+    border: none;
+}
+
+/* Central widget */
+QWidget {
+    background-color: #1A1A1A;
+    color: #F0F0F0;
+    font-family: Arial, sans-serif; /* Base font */
+    font-size: 10pt; /* Base font size */
+}
+
+/* Splitter */
+QSplitter::handle {
+    background-color: #2D2D30;
+}
+
+/* Scrollbars */
+QScrollBar:vertical {
+    background-color: #2D2D30;
+    width: 12px;
+    margin: 0px;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #3E3E42;
+    min-height: 20px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: #00A4FF;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+QScrollBar:horizontal {
+    background-color: #2D2D30;
+    height: 12px;
+    margin: 0px;
+}
+
+QScrollBar::handle:horizontal {
+    background-color: #3E3E42;
+    min-width: 20px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background-color: #00A4FF;
+}
+
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+    width: 0px;
+}
+
+/* Tab widget */
+QTabWidget::pane {
+    border: 1px solid #2D2D30;
+    background-color: #1A1A1A;
+    border-radius: 4px;
+    padding: 20px; /* Increased padding inside tab panes */
+}
+
+QTabBar::tab {
+    background-color: #2D2D30;
+    color: #B0B0B0;
+    padding: 10px 20px; /* Increased padding */
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border: 1px solid #1A1A1A;
+    border-bottom: none;
+    min-width: 80px;
+}
+
+QTabBar::tab:selected {
+    background-color: #1A1A1A;
+    color: #00A4FF;
+    border-bottom: 2px solid #00A4FF;
+}
+
+QTabBar::tab:hover:!selected {
+    background-color: #4A4A4E; /* Slightly lighter background on hover */
+    color: #FFFFFF; /* Brighter text on hover */
+}
+
+
+/* Buttons */
+QPushButton {
+    background-color: #2D2D30;
+    color: #F0F0F0;
+    border: 1px solid #3E3E42;
+    border-radius: 4px;
+    padding: 10px 20px; /* Increased padding */
+    min-height: 30px;
+    /* Add transition for smooth hover effect */
+    /* transition: background-color 0.2s ease-in-out, border 0.2s ease-in-out; */
+}
+
+QPushButton:hover {
+    background-color: #4A4A4E; /* Slightly lighter background on hover */
+    border: 1px solid #00B4FF; /* Slightly brighter border on hover */
+    /* Add subtle glow effect (removed) */
+}
+
+QPushButton:pressed {
+    background-color: #00A4FF;
+    color: #FFFFFF;
+    border: 1px solid #0078D7;
+}
+
+/* Generate button with special styling */
+QPushButton#generateButton {
+    background-color: #00A4FF; /* Solid accent color */
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 11pt; /* Consistent larger size for main action */
+    border: none;
+    border-radius: 6px; /* Slightly more rounded */
+    padding: 12px 24px; /* Larger padding */
+    min-height: 50px;
+    /* Add transition for smooth hover effect */
+    /* transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; */
+}
+
+QPushButton#generateButton:hover {
+    background-color: #00B4FF; /* Lighter solid color on hover */
+    /* Glow effect removed */
+}
+
+QPushButton#generateButton:pressed {
+    background-color: #0078D7; /* Darker solid color when pressed */
+    /* Shadow removed */
+}
+
+/* Sliders */
+QSlider::groove:horizontal {
+    border: none;
+    height: 8px; /* Increased height */
+    background: #2D2D30; /* Solid background */
+    border-radius: 4px;
+    margin: 2px 0;
+}
+
+QSlider::handle:horizontal {
+    background-color: #00A4FF;
+    border: 2px solid #1A1A1A; /* Add border for contrast */
+    width: 18px; /* Slightly larger handle */
+    margin: -7px 0; /* Adjust margin for larger handle */
+    border-radius: 9px;
+}
+
+QSlider::handle:horizontal:hover {
+    background-color: #FFB400; /* Change color on hover */
+    width: 22px; /* Make handle larger on hover */
+    margin: -9px 0; /* Adjust margin for larger handle */
+    border-radius: 11px;
+}
+
+QSlider::handle:horizontal:pressed {
+    background-color: #0078D7; /* Different color when pressed */
+}
+
+QSlider::add-page:horizontal {
+    background-color: #2D2D30;
+    border-radius: 3px;
+}
+
+QSlider::sub-page:horizontal {
+    background-color: #00A4FF;
+    border-radius: 3px;
+}
+
+/* Checkboxes */
+QCheckBox {
+    color: #F0F0F0;
+    spacing: 8px; /* Increased spacing */
+}
+
+QCheckBox::indicator {
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    border: 1px solid #3E3E42;
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: #2D2D30;
+}
+
+QCheckBox::indicator:unchecked:hover {
+    border: 2px solid #00A4FF; /* Thicker border on hover */
+}
+
+QCheckBox::indicator:checked {
+    background-color: #00A4FF;
+    image: url(:/icons/check.png);
+}
+
+/* Radio buttons */
+QRadioButton {
+    color: #F0F0F0;
+    spacing: 8px; /* Increased spacing */
+}
+
+QRadioButton::indicator {
+    width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    border: 1px solid #3E3E42;
+}
+
+QRadioButton::indicator:unchecked {
+    background-color: #2D2D30;
+}
+
+QRadioButton::indicator:unchecked:hover {
+    border: 2px solid #00A4FF; /* Thicker border on hover */
+}
+
+QRadioButton::indicator:checked {
+    background-color: #00A4FF; /* Use accent color for the background */
+    border: 1px solid #0078D7; /* Slightly darker border */
+    /* The inner circle effect can be achieved by the background color */
+    /* within the rounded indicator shape defined earlier */
+}
+
+/* Group boxes */
+QGroupBox {
+    border: 1px solid #3E3E42;
+    border-radius: 4px;
+    margin-top: 20px;
+    /* padding-top: 24px; Removed this, using general padding */
+    padding: 20px; /* Increased general padding inside group boxes */
+    padding-top: 30px; /* Ensure top padding accommodates title */
+    color: #F0F0F0;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 6px 12px; /* Slightly increased padding */
+    background-color: #2D2D30;
+    border-radius: 3px;
+    color: #00A4FF;
+    margin-left: 10px; /* Adjust title position */
+    margin-top: -8px; /* Adjust title vertical position slightly more */
+}
+
+/* Chef cards */
+QGroupBox.chefCard {
+    background-color: #2D2D30;
+    border: 1px solid #3E3E42;
+    border-radius: 6px;
+    padding: 15px; /* Increased padding */
+    margin: 8px; /* Increased margin */
+}
+
+QGroupBox.chefCard:hover {
+    border: 1px solid #00A4FF;
+    background-color: #3E3E42;
+}
+
+QGroupBox.chefCard[selected="true"] {
+    border: 2px solid #00A4FF;
+    background-color: #3E3E42;
+}
+/* Removed Chef portrait label styles */
+}
+
+/* Chef name label */
+QLabel.chefName {
+    color: #F0F0F0;
+    font-size: 11pt; /* Consistent title size */
+    font-weight: bold;
+}
+
+/* Chef description */
+QLabel.chefDescription {
+    color: #B0B0B0;
+    font-size: 9pt; /* Consistent smaller description size */
+}
+
+/* Recipe display */
+QTextEdit#recipeDisplay {
+    background-color: #2D2D30;
+    color: #FFFFFF; /* Change to white for better contrast */
+    border: 1px solid #3E3E42;
+    border-radius: 4px;
+    padding: 15px; /* Increased padding */
+    selection-background-color: #00A4FF;
+    selection-color: #FFFFFF;
+}
