@@ -47,7 +47,7 @@ class RecipeGenerator:
                     {"role": "user", "content": prompt}
                 ],
                 temperature=temperature,
-                max_tokens=max_tokens
+                max_completion_tokens=max_tokens # Use max_completion_tokens instead of max_tokens
             )
 
             recipe_text = None # Initialize recipe_text
@@ -118,7 +118,7 @@ class RecipeGenerator:
         if params["chefs"]:
             prompt += "CHEF INFLUENCES:\n"
             # Import locally to avoid potential circular dependency if CHEF_PROFILES needs RecipeGenerator
-            from chef_profiles import CHEF_PROFILES, CHEF_INFLUENCE_DESCRIPTIONS
+            from .chef_profiles import CHEF_PROFILES, CHEF_INFLUENCE_DESCRIPTIONS
             for chef_id, influence in params["chefs"].items():
                 chef = CHEF_PROFILES.get(chef_id, {})
 

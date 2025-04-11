@@ -1,3 +1,4 @@
+# michelin_recipe_generator/main.py
 import sys
 from PyQt5.QtCore import QFile, QTextStream
 import os
@@ -13,10 +14,11 @@ from PyQt5.QtGui import QFont, QPixmap, QIcon
 # Removed QColor, QPainter, QGraphicsDropShadowEffect imports
 
 # Import custom modules
-from chef_profiles import CHEF_PROFILES
-from recipe_generator import RecipeGenerator
-from settings_manager import SettingsManager
-from api_key_dialog import ApiKeyDialog
+from .chef_profiles import CHEF_PROFILES
+from .recipe_generator import RecipeGenerator
+from .settings_manager import SettingsManager
+from .api_key_dialog import ApiKeyDialog
+from .settings_dialog import SettingsDialog # <-- Import the new dialog
 
 # Removed ChefPortraitEffect class
 class MichelinRecipeGenerator(QMainWindow):
@@ -56,8 +58,9 @@ class MichelinRecipeGenerator(QMainWindow):
 
     def apply_dark_theme(self):
         """Apply the dark theme to the application"""
-        # Load the QSS file (Path relative to script CWD)
-        style_file_path = os.path.abspath("styles/dark_theme.qss")
+        # Construct path relative to this file's location
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        style_file_path = os.path.join(script_dir, "styles", "dark_theme.qss")
         print(f"Stylesheet path: {style_file_path}")
         style_file = QFile(style_file_path)
         if not style_file.exists():
@@ -112,14 +115,21 @@ class MichelinRecipeGenerator(QMainWindow):
         self.tabs.addTab(self.dietary_occasion_tab, style.standardIcon(QStyle.SP_MessageBoxInformation), "Dietary & Occasion")
         self.tabs.addTab(self.equipment_time_tab, style.standardIcon(QStyle.SP_ComputerIcon), "Equipment & Time")
 
+        # Add settings button
+        self.settings_button = QPushButton(style.standardIcon(QStyle.SP_FileDialogDetailedView), " Settings") # Use an appropriate icon
+        self.settings_button.clicked.connect(self.open_settings_dialog)
+        self.settings_button.setToolTip("Configure application settings (e.g., OpenAI model)")
+
         # Add generate button
         self.generate_button = QPushButton("Generate Michelin Recipe") # Store as class member
         self.generate_button.setMinimumHeight(50)
         # generate_button.setFont(QFont("Arial", 12, QFont.Bold)) # Removed, handled by QSS
         self.generate_button.clicked.connect(self.generate_recipe)
 
+
         # Add widgets to left layout
         left_layout.addWidget(self.tabs)
+        left_layout.addWidget(self.settings_button) # <-- Add settings button here
         left_layout.addWidget(self.generate_button)
 
         # Create right panel (recipe display)
@@ -634,11 +644,17 @@ class MichelinRecipeGenerator(QMainWindow):
                 <li>Click the <strong>Generate Michelin Recipe</strong> button below.</li>
             </ul>
             <p>Your unique, AI-generated recipe will appear here.</p>
-            <p><em>Note: An OpenAI API key is required. If you haven't set one, you'll be prompted or can add it via the (future) Settings menu.</em></p>
+            <p><em>Note: An OpenAI API key is required. If you haven't set one, you'll be prompted or can add it via the Settings menu.</em></p>
         </body>
         </html>
         """
         self.recipe_display.setHtml(welcome_html)
+
+    def open_settings_dialog(self):
+        """Open the settings configuration dialog."""
+        dialog = SettingsDialog(self.settings_manager, self)
+        # No need to check result here, dialog handles saving internally on accept
+        dialog.exec_()
 
 
 def main():

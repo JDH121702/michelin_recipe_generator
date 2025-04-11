@@ -271,7 +271,6 @@ QGroupBox.chefCard[selected="true"] {
     background-color: #3E3E42;
 }
 /* Removed Chef portrait label styles */
-}
 
 /* Chef name label */
 QLabel.chefName {
